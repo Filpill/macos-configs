@@ -1,5 +1,9 @@
 # macos-configs
 
+<p align="center">
+  <img src="static/img/mac-rice.png" alt="MacOS rice" width="380">
+</p>
+
 Backup and restore of my macOS dotfiles / app configs. Files are stored at their
 path relative to `$HOME` (e.g. `~/.config/aerospace/aerospace.toml` lives here as
 `.config/aerospace/aerospace.toml`).
