@@ -1,0 +1,9 @@
+set previewer ~/.config/lf/previewer.sh
+set cleaner ~/.config/lf/cleaner.sh
+
+cmd open &{{
+    case $(file --mime-type "$f" -b) in
+        text/*) lf -remote "send $id \$nvim \"$f\"" ;;
+        *) open "$f" ;;
+    esac
+}}

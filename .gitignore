@@ -1,0 +1,10 @@
+# Safety net: never commit secret material, even if copied here by mistake.
+*.pem
+*.key
+*.p8
+*.p12
+id_rsa*
+id_ed25519*
+PAT-*
+*token*.txt
+*secret*
