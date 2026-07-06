@@ -38,10 +38,3 @@ target to `<file>.bak.<timestamp>` before overwriting.
 
 Add its source path to the `CONFIGS` array in `backup.sh` and re-run `./backup.sh`.
 `deploy.sh` auto-discovers whatever is in the repo, so it needs no changes.
-
-## Secrets
-
-Tracked configs contain no raw secrets — only settings and *paths* to key/token
-files (which live in `~/.ssh` and are not copied here). `.gitignore` also blocks
-common secret patterns (`*.pem`, `*.key`, `PAT-*`, `*token*.txt`, …) as a safety net.
-Keep this repo private.
