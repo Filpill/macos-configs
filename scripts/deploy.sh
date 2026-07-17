@@ -12,7 +12,7 @@
 #
 set -euo pipefail
 
-REPO_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
+REPO_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")/.." && pwd)"
 
 ASSUME_YES=0
 DRY_RUN=0
@@ -26,8 +26,7 @@ done
 
 # Repo housekeeping files that must NOT be deployed to $HOME.
 EXCLUDES=(
-  "$REPO_DIR/backup.sh"
-  "$REPO_DIR/deploy.sh"
+  "$REPO_DIR/Brewfile"
   "$REPO_DIR/.gitignore"
   "$REPO_DIR/README.md"
 )
@@ -35,6 +34,8 @@ EXCLUDES=(
 is_excluded() {
   local f="$1"
   [[ "$f" == "$REPO_DIR/.git/"* ]] && return 0
+  [[ "$f" == "$REPO_DIR/scripts/"* ]] && return 0
+  [[ "$f" == "$REPO_DIR/static/"* ]] && return 0
   for e in "${EXCLUDES[@]}"; do [[ "$f" == "$e" ]] && return 0; done
   return 1
 }

@@ -6,8 +6,8 @@
 #
 set -euo pipefail
 
-# Repo root = directory this script lives in (so it works from anywhere).
-REPO_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
+# Repo root = parent of the scripts/ dir this script lives in (works from anywhere).
+REPO_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")/.." && pwd)"
 
 # Source paths (must live under $HOME so the relative path can be mirrored).
 CONFIGS=(

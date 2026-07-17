@@ -10,17 +10,21 @@ path relative to `$HOME` (e.g. `~/.config/aerospace/aerospace.toml` lives here a
 
 ## Scripts
 
-| Script       | Direction                | What it does |
-|--------------|--------------------------|--------------|
-| `backup.sh`  | live configs → repo      | Copies each tracked file from `$HOME` into this repo. |
-| `deploy.sh`  | repo → live locations    | Copies the repo's files back to their `$HOME` paths. |
+| Script              | Direction                | What it does |
+|---------------------|--------------------------|--------------|
+| `scripts/backup.sh`  | live configs → repo      | Copies each tracked file from `$HOME` into this repo. |
+| `scripts/deploy.sh`  | repo → live locations    | Copies the repo's files back to their `$HOME` paths. |
+| `scripts/install.sh` | Brewfile → Homebrew      | Installs Homebrew (if needed) and everything in `Brewfile`. |
 
 ```bash
-./backup.sh          # pull current configs into the repo
+./scripts/backup.sh          # pull current configs into the repo
 
-./deploy.sh          # preview, then confirm before overwriting
-./deploy.sh -y       # skip the confirmation prompt
-./deploy.sh -n       # dry run: show what would change, touch nothing
+./scripts/deploy.sh          # preview, then confirm before overwriting
+./scripts/deploy.sh -y       # skip the confirmation prompt
+./scripts/deploy.sh -n       # dry run: show what would change, touch nothing
+
+./scripts/install.sh         # install Homebrew + all Brewfile packages
+./scripts/install.sh --check # report what's missing, install nothing
 ```
 
 `deploy.sh` previews every action, asks before writing, and backs up any existing
@@ -36,5 +40,6 @@ target to `<file>.bak.<timestamp>` before overwriting.
 
 ## Adding a file
 
-Add its source path to the `CONFIGS` array in `backup.sh` and re-run `./backup.sh`.
-`deploy.sh` auto-discovers whatever is in the repo, so it needs no changes.
+Add its source path to the `CONFIGS` array in `scripts/backup.sh` and re-run
+`./scripts/backup.sh`. `deploy.sh` auto-discovers whatever is in the repo, so it
+needs no changes.
