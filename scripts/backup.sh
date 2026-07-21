@@ -20,7 +20,17 @@ CONFIGS=(
   "$HOME/.config/lf/lfrc"
   "$HOME/.config/lf/cleaner.sh"
   "$HOME/.config/lf/previewer.sh"
+  "$HOME/.config/go2rtc/go2rtc.yaml"
+  "$HOME/Library/LaunchAgents/com.filiplivancic.go2rtc.plist"
 )
+
+# Pull in every standalone script under ~/.local/bin/scripts so new ones are
+# backed up automatically without editing this list.
+if [[ -d "$HOME/.local/bin/scripts" ]]; then
+  while IFS= read -r -d '' f; do
+    CONFIGS+=("$f")
+  done < <(find "$HOME/.local/bin/scripts" -type f -print0)
+fi
 
 echo "Backing up configs into $REPO_DIR"
 
@@ -37,5 +47,14 @@ for src in "${CONFIGS[@]}"; do
   cp -p "$src" "$dest"
   echo "  OK    $src -> $rel"
 done
+
+# Regenerate a fresh Brewfile in the repo root from the currently-installed packages.
+if command -v brew >/dev/null 2>&1; then
+  echo "Regenerating Brewfile"
+  brew bundle dump --file="$REPO_DIR/Brewfile" --force
+  echo "  OK    brew bundle dump -> Brewfile"
+else
+  echo "  SKIP  Brewfile (brew not found)"
+fi
 
 echo "Done."

@@ -51,4 +51,37 @@ fi
 log "Installing packages from Brewfile…"
 brew bundle install --file="$BREWFILE"
 
+# --- go2rtc (not in Homebrew; standalone binary from GitHub releases) ------
+# Bridges the UniFi G6 camera (RTSPS/H.264) to WebRTC for use as a meeting cam.
+install_go2rtc() {
+  local bindir="$HOME/.local/bin"
+  local bin="$bindir/go2rtc"
+
+  if [[ -x "$bin" ]]; then
+    log "go2rtc already installed ($("$bin" --version 2>&1 | head -n1)) — skipping."
+    return 0
+  fi
+
+  local arch asset
+  case "$(uname -m)" in
+    arm64) arch="arm64" ;;
+    x86_64) arch="amd64" ;;
+    *) err "Unsupported arch for go2rtc: $(uname -m)"; return 1 ;;
+  esac
+  asset="go2rtc_mac_${arch}.zip"
+
+  log "Installing go2rtc ($asset)…"
+  mkdir -p "$bindir"
+  local tmp
+  tmp="$(mktemp -d)"
+  curl -fL -o "$tmp/go2rtc.zip" \
+    "https://github.com/AlexxIT/go2rtc/releases/latest/download/${asset}"
+  unzip -o -q "$tmp/go2rtc.zip" -d "$tmp"
+  mv "$tmp/go2rtc" "$bin"
+  chmod +x "$bin"
+  rm -rf "$tmp"
+  log "go2rtc installed to $bin ($("$bin" --version 2>&1 | head -n1))"
+}
+install_go2rtc
+
 log "Done. All packages from $BREWFILE are installed."

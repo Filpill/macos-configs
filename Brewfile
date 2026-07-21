@@ -21,6 +21,8 @@ brew "displayplacer"
 brew "dtools"
 # Play, record, convert, and stream select audio and video codecs
 brew "ffmpeg"
+# Play, record, convert, and stream audio and video
+brew "ffmpeg@6"
 # Command-line fuzzy finder written in Go
 brew "fzf"
 # Render markdown on the CLI
@@ -63,8 +65,9 @@ brew "snowflake-cli"
 brew "uv"
 # Motion estimation and denoising filter for VapourSynth
 brew "vapoursynth-mvtools"
-# AeroSpace is an i3-like tiling window manager for macOS
-cask "nikitabobko/tap/aerospace"
+cask "aerospace"
+# Cast media files to Smart TVs and Chromecast devices
+cask "go2tv"
 # Terminal emulator as alternative to Apple's Terminal app
 cask "iterm2"
 # Keyboard customiser
@@ -73,6 +76,8 @@ cask "karabiner-elements"
 cask "mkvtools"
 # Create and edit MP4 videos
 cask "mp4tools"
+# Open-source software for live streaming and screen recording
+cask "obs"
 # Virtual machines UI using QEMU
 cask "utm"
 # Open-source code editor

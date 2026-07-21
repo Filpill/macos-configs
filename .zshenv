@@ -9,4 +9,5 @@ export EDITOR=nvim
 # Adding to PATH
 export PATH="$HOME/.local/bin:$PATH"
 export PATH="$PATH:/Users/filiplivancic/.local/bin"
+export PATH="$HOME/.local/bin/scripts:$PATH"
 . "$HOME/.cargo/env"

@@ -1,0 +1,14 @@
+streams:
+  # H.264 over RTSPS, WITHOUT ?enableSrtp — secure control channel but
+  # unencrypted media, which go2rtc forwards cleanly to WebRTC (native, no transcode).
+  # Video-only; use your laptop/headset mic for meeting audio.
+  g6:
+    - rtsps://192.168.1.1:7441/nXfiHbFzBikhQYrY#media=video
+
+webrtc:
+  listen: ":8555"
+  candidates:
+    - 127.0.0.1:8555        # local-only; fine since OBS is on the same Mac
+
+log:
+  level: info               # bump to "debug" if the stream won't connect

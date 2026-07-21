@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+    <key>Label</key>
+    <string>com.filiplivancic.go2rtc</string>
+
+    <key>ProgramArguments</key>
+    <array>
+        <string>/Users/filiplivancic/.local/bin/go2rtc</string>
+        <string>-config</string>
+        <string>/Users/filiplivancic/.config/go2rtc/go2rtc.yaml</string>
+    </array>
+
+    <key>WorkingDirectory</key>
+    <string>/Users/filiplivancic</string>
+
+    <key>RunAtLoad</key>
+    <true/>
+
+    <key>KeepAlive</key>
+    <true/>
+
+    <key>StandardOutPath</key>
+    <string>/Users/filiplivancic/Library/Logs/go2rtc.log</string>
+    <key>StandardErrorPath</key>
+    <string>/Users/filiplivancic/Library/Logs/go2rtc.log</string>
+</dict>
+</plist>
