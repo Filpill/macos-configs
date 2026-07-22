@@ -21,7 +21,6 @@ CONFIGS=(
   "$HOME/.config/lf/cleaner.sh"
   "$HOME/.config/lf/previewer.sh"
   "$HOME/.config/go2rtc/go2rtc.yaml"
-  "$HOME/Library/LaunchAgents/com.filiplivancic.go2rtc.plist"
 )
 
 # Pull in every standalone script under ~/.local/bin/scripts so new ones are
@@ -30,6 +29,28 @@ if [[ -d "$HOME/.local/bin/scripts" ]]; then
   while IFS= read -r -d '' f; do
     CONFIGS+=("$f")
   done < <(find "$HOME/.local/bin/scripts" -type f -print0)
+fi
+
+# Pull in our own LaunchAgents (com.filiplivancic.*) — skips third-party ones
+# like Google/displayplacer. Captures go2rtc, obs-headless, and future agents.
+for f in "$HOME"/Library/LaunchAgents/com.filiplivancic.*.plist; do
+  [[ -f "$f" ]] && CONFIGS+=("$f")
+done
+
+# OBS Studio config needed to reproduce the headless virtual-cam setup:
+# global/user settings, scene collections, and profiles. Deliberately skips
+# logs, crashes, cache, and plugin_config (machine-specific / not needed).
+OBS_DIR="$HOME/Library/Application Support/obs-studio"
+if [[ -d "$OBS_DIR" ]]; then
+  for f in "$OBS_DIR/global.ini" "$OBS_DIR/user.ini"; do
+    [[ -f "$f" ]] && CONFIGS+=("$f")
+  done
+  # scene collections (*.json only — skip the *.bak backups OBS writes)
+  while IFS= read -r -d '' f; do CONFIGS+=("$f"); done \
+    < <(find "$OBS_DIR/basic/scenes" -type f -name '*.json' -print0 2>/dev/null)
+  # profiles (basic.ini + encoder/service settings)
+  while IFS= read -r -d '' f; do CONFIGS+=("$f"); done \
+    < <(find "$OBS_DIR/basic/profiles" -type f -print0 2>/dev/null)
 fi
 
 echo "Backing up configs into $REPO_DIR"
