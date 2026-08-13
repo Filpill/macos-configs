@@ -1,0 +1,5 @@
+# Use nvim in place of vim
+alias vim='nvim'
+
+# Claude Code via the Vivanti AI gateway (plain `claude` = Anthropic subscription)
+alias claudeg='claude --settings "$HOME/.claude/gateway.settings.json"'

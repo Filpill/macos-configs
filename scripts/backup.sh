@@ -27,6 +27,14 @@ CONFIGS=(
   "$HOME/.claude/gateway.settings.json"
 )
 
+# Shell aliases/shortcuts sourced by .zshrc (aliasrc, shortcutrc). Whole dir so
+# a new rc file here is picked up without editing the list above.
+if [[ -d "$HOME/.config/shortcuts" ]]; then
+  while IFS= read -r -d '' f; do
+    CONFIGS+=("$f")
+  done < <(find "$HOME/.config/shortcuts" -type f -print0)
+fi
+
 # Pull in every standalone script under ~/.local/bin/scripts so new ones are
 # backed up automatically without editing this list.
 if [[ -d "$HOME/.local/bin/scripts" ]]; then
