@@ -1,11 +1,11 @@
-default_connection_name = "neg-dev-sso"
+default_connection_name = "vivanti-corporate"
 
 [cli]
 ignore_new_version_warning = false
 
   [cli.logs]
   save_logs = true
-  path = "/Users/filiplivancic/Library/Application Support/snowflake/logs"
+  path = "/Users/filip.livancic/Library/Application Support/snowflake/logs"
   level = "info"
 
 [connections.filip-personal]
@@ -13,14 +13,21 @@ account = "biiyyqy-tx04262"
 user = "Filpill"
 role = "ACCOUNTADMIN"
 authenticator = "PROGRAMMATIC_ACCESS_TOKEN"
-token_file_path = "/Users/filiplivancic/.ssh/keys/PAT-tx04262-snowflake.txt"
+token_file_path = "/Users/filip.livancic/.ssh/keys/PAT-tx04262-snowflake.txt"
 
 [connections.trial-filip]
 account = "irabuam-uk16676"
 user = "filiplivancic"
 role = "ACCOUNTADMIN"
 authenticator = "PROGRAMMATIC_ACCESS_TOKEN"
-token_file_path = "/Users/filiplivancic/.config/snowflake/PAT-uk16676-snowflake.txt"
+token_file_path = "/Users/filip.livancic/.config/snowflake/PAT-uk16676-snowflake.txt"
+
+[connections.vivanti-corporate]
+account = "PIJIRYX-NF66742"
+user = "filip.livancic@vivanti.com"
+role = "CORPORATE_DB_PUBLIC_READONLY"
+authenticator = "PROGRAMMATIC_ACCESS_TOKEN"
+token_file_path = "/Users/filip.livancic/.ssh/keys/PAT-vivanti-nf66742.txt"
 
 [connections.neg-dev]
 account = "neg-dev"
@@ -28,7 +35,7 @@ user = "filip.livancic@vivanti.com"
 role = "DATA_ENGINEER"
 warehouse = "WH_ENGINEERING"
 authenticator = "SNOWFLAKE_JWT"
-private_key_path = "/Users/filiplivancic/.ssh/keys/dbt_next_energy_filip_livancic.pem"
+private_key_path = "/Users/filip.livancic/.ssh/keys/dbt_next_energy_filip_livancic.pem"
 
 [connections.neg-test]
 account = "neg-test"
@@ -36,7 +43,7 @@ user = "filip.livancic@vivanti.com"
 role = "DATA_ENGINEER"
 warehouse = "WH_ENGINEERING"
 authenticator = "SNOWFLAKE_JWT"
-private_key_path = "/Users/filiplivancic/.ssh/keys/dbt_next_energy_filip_livancic.pem"
+private_key_path = "/Users/filip.livancic/.ssh/keys/dbt_next_energy_filip_livancic.pem"
 
 [connections.neg-prod]
 account = "neg-prod"
@@ -44,7 +51,7 @@ user = "filip.livancic@vivanti.com"
 role = "DATA_ENGINEER"
 warehouse = "WH_ENGINEERING"
 authenticator = "SNOWFLAKE_JWT"
-private_key_path = "/Users/filiplivancic/.ssh/keys/dbt_next_energy_filip_livancic.pem"
+private_key_path = "/Users/filip.livancic/.ssh/keys/dbt_next_energy_filip_livancic.pem"
 
 [connections.neg-dev-sso]
 account = "neg-dev"

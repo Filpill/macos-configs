@@ -29,6 +29,9 @@ EXCLUDES=(
   "$REPO_DIR/Brewfile"
   "$REPO_DIR/.gitignore"
   "$REPO_DIR/README.md"
+  # This repo's own project-scoped Claude Code permissions. Not a $HOME config —
+  # deploying it would overwrite the global ~/.claude/settings.local.json.
+  "$REPO_DIR/.claude/settings.local.json"
 )
 
 is_excluded() {

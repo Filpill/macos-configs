@@ -1,10 +1,12 @@
-# Re-located Snowflake CLI Config
+# Re-located Snowflake CLI Config and other exports
 export SNOWFLAKE_HOME="$HOME/.config/snowflake"
-export SNOWFLAKE_USER="filip.livancic@vivanti.com"
-export SNOWFLAKE_ROLE="DATA_ENGINEER"
-export SNOWFLAKE_PRIVATE_KEY_PATH="$HOME/.ssh/keys/dbt_next_energy_filip_livancic.pem"
 export DBT_DEV_SCHEMA="fliv"
 export EDITOR=nvim
+
+# Next Energy Exports
+# export SNOWFLAKE_USER="filip.livancic@vivanti.com"
+# export SNOWFLAKE_ROLE="DATA_ENGINEER"
+# export SNOWFLAKE_PRIVATE_KEY_PATH="$HOME/.ssh/keys/dbt_next_energy_filip_livancic.pem"
 
 # Adding to PATH
 export PATH="$HOME/.local/bin:$PATH"

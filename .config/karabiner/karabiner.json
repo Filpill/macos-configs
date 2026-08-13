@@ -9,11 +9,24 @@
                             {
                                 "from": {
                                     "key_code": "q",
-                                    "modifiers": { "mandatory": ["command"], "optional": ["caps_lock"] }
+                                    "modifiers": {
+                                        "mandatory": ["command"],
+                                        "optional": ["caps_lock"]
+                                    }
                                 },
-                                "to_if_alone": [{ "key_code": "w", "modifiers": ["left_command"] }],
-                                "to_if_held_down": [{ "key_code": "q", "modifiers": ["left_command"] }],
                                 "parameters": { "basic.to_if_held_down_threshold_milliseconds": 500 },
+                                "to_if_alone": [
+                                    {
+                                        "key_code": "w",
+                                        "modifiers": ["left_command"]
+                                    }
+                                ],
+                                "to_if_held_down": [
+                                    {
+                                        "key_code": "q",
+                                        "modifiers": ["left_command"]
+                                    }
+                                ],
                                 "type": "basic"
                             }
                         ]
@@ -35,7 +48,7 @@
                         ]
                     },
                     {
-                        "description": "F5 to screen capture bar (hyper+5)",
+                        "description": "F5 to screen capture bar (cmd+shift+5)",
                         "manipulators": [
                             {
                                 "from": {
@@ -45,7 +58,7 @@
                                 "to": [
                                     {
                                         "key_code": "5",
-                                        "modifiers": ["left_command", "left_shift", "left_control", "left_option"]
+                                        "modifiers": ["left_command", "left_shift"]
                                     }
                                 ],
                                 "type": "basic"
@@ -53,7 +66,7 @@
                         ]
                     },
                     {
-                        "description": "F6 to screenshot area select (hyper+4)",
+                        "description": "F6 to screenshot area select (cmd+shift+4)",
                         "manipulators": [
                             {
                                 "from": {
@@ -63,7 +76,7 @@
                                 "to": [
                                     {
                                         "key_code": "4",
-                                        "modifiers": ["left_command", "left_shift", "left_control", "left_option"]
+                                        "modifiers": ["left_command", "left_shift"]
                                     }
                                 ],
                                 "type": "basic"

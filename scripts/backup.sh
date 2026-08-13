@@ -21,6 +21,10 @@ CONFIGS=(
   "$HOME/.config/lf/cleaner.sh"
   "$HOME/.config/lf/previewer.sh"
   "$HOME/.config/go2rtc/go2rtc.yaml"
+  # Claude Code AI-gateway settings (base URL, model, apiKeyHelper). Holds no
+  # secret itself — the key is read at runtime from ~/.ssh/api/, which is not
+  # in this repo and must be provisioned separately on a new machine.
+  "$HOME/.claude/gateway.settings.json"
 )
 
 # Pull in every standalone script under ~/.local/bin/scripts so new ones are

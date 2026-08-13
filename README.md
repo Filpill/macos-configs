@@ -37,6 +37,9 @@ target to `<file>.bak.<timestamp>` before overwriting.
 - `.config/snowflake/config.toml`
 - `.config/lf/lfrc`, `.config/lf/cleaner.sh`, `.config/lf/previewer.sh`
 - `.zshrc`, `.zshenv`, `.zprofile`
+- `.claude/gateway.settings.json` (Claude Code AI-gateway config. The API key it
+  points at lives in `~/.ssh/api/` and is **not** tracked — provision it manually
+  on a new machine.)
 
 ## Adding a file
 

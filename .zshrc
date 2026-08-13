@@ -1,8 +1,10 @@
 # Add SSH-Keys
-ssh-add ~/.ssh/keys/filpill-github > /dev/null 2>&1
-ssh-add ~/.ssh/keys/vivanti-bitbucket > /dev/null 2>&1
-ssh-add ~/.ssh/keys/next-energy-ado > /dev/null 2>&1
+ssh-add ~/.ssh/keys/filpill-github                     > /dev/null 2>&1
+ssh-add ~/.ssh/keys/vivanti-bit                        > /dev/null 2>&1
+ssh-add ~/.ssh/keys/next-energy-ado                    > /dev/null 2>&1
 ssh-add ~/.ssh/keys/dbt_next_energy_filip_livancic.pem > /dev/null 2>&1
+ssh-add ~/.ssh/keys/vivanti_partner_A9322992770571.p8  > /dev/null 2>&1
+
 
 # Enable prompt colors and git branch info
 autoload -U colors && colors
