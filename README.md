@@ -15,6 +15,7 @@ path relative to `$HOME` (e.g. `~/.config/aerospace/aerospace.toml` lives here a
 | `scripts/backup.sh`  | live configs → repo      | Copies each tracked file from `$HOME` into this repo. |
 | `scripts/deploy.sh`  | repo → live locations    | Copies the repo's files back to their `$HOME` paths. |
 | `scripts/install.sh` | Brewfile → Homebrew      | Installs Homebrew (if needed) and everything in `Brewfile`. |
+| `scripts/macos-defaults.sh` | repo → `defaults` domains | Applies system settings that aren't files (screenshot hotkeys). Run automatically by `deploy.sh`. |
 
 ```bash
 ./scripts/backup.sh          # pull current configs into the repo
@@ -25,10 +26,43 @@ path relative to `$HOME` (e.g. `~/.config/aerospace/aerospace.toml` lives here a
 
 ./scripts/install.sh         # install Homebrew + all Brewfile packages
 ./scripts/install.sh --check # report what's missing, install nothing
+
+./scripts/macos-defaults.sh    # apply the non-file system settings on their own
+./scripts/macos-defaults.sh -n # dry run: list them, change nothing
 ```
 
 `deploy.sh` previews every action, asks before writing, and backs up any existing
-target to `<file>.bak.<timestamp>` before overwriting.
+target to `<file>.bak.<timestamp>` before overwriting. After the file copies it
+runs `macos-defaults.sh` for the settings that have no config file.
+
+## System settings (not files)
+
+Some settings live in a `defaults` domain, so they can't be round-tripped as
+files — `cfprefsd` caches the domain and would ignore or clobber a plain `cp`.
+These are declared in `scripts/macos-defaults.sh`, which is the source of truth
+for them (nothing to back up).
+
+### Screenshot hotkeys
+
+macOS's defaults (`⇧⌘3` / `⇧⌘4` / `⇧⌘5`) collide with AeroSpace's
+`cmd-shift-N` → `move-node-to-workspace` bindings, so they're moved off `cmd`:
+
+| Shortcut | Action |
+|---|---|
+| `ctrl+shift+3` | Full screen → file |
+| `ctrl+shift+4` | Selection clipper → file |
+| `ctrl+shift+5` | Screenshot & recording options |
+| `ctrl+alt+shift+3` | Full screen → clipboard |
+| `ctrl+alt+shift+4` | Selection clipper → clipboard |
+
+Two gotchas worth remembering if you edit these:
+
+- The `parameters` values **must** be integers. `defaults write -dict-add <id>
+  "{...}"` stores them as strings and macOS silently ignores the entry.
+- `plutil -replace` does not create intermediate dicts, so each hotkey entry is
+  replaced whole — on a fresh Mac the per-id keys don't exist yet.
+
+A logout may be needed if `activateSettings -u` doesn't make them live.
 
 ## Tracked files
 

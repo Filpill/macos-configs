@@ -5,6 +5,9 @@
 #
 # Existing target files are backed up to <file>.bak.<timestamp> before overwriting.
 #
+# Afterwards, scripts/macos-defaults.sh applies the settings that live in
+# `defaults` domains rather than in a config file (screenshot hotkeys).
+#
 # Usage:
 #   ./deploy.sh          # preview, then prompt for confirmation
 #   ./deploy.sh -y       # skip the confirmation prompt
@@ -65,6 +68,9 @@ for src in "${FILES[@]}"; do
 done
 
 if [[ $DRY_RUN -eq 1 ]]; then
+  echo
+  "$REPO_DIR/scripts/macos-defaults.sh" --dry-run
+  echo
   echo "Dry run — no changes made."
   exit 0
 fi
@@ -84,5 +90,9 @@ for src in "${FILES[@]}"; do
   cp -p "$src" "$dest"
   echo "  OK    ~/$rel"
 done
+
+# Settings that aren't files: screenshot hotkeys and friends.
+echo
+"$REPO_DIR/scripts/macos-defaults.sh"
 
 echo "Done."
