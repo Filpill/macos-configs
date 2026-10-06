@@ -1,4 +1,5 @@
-default_connection_name = "vivanti-corporate"
+#default_connection_name = "vivanti-corporate"
+default_connection_name = "neg-dev"
 
 [cli]
 ignore_new_version_warning = false
@@ -35,7 +36,7 @@ user = "filip.livancic@vivanti.com"
 role = "DATA_ENGINEER"
 warehouse = "WH_ENGINEERING"
 authenticator = "SNOWFLAKE_JWT"
-private_key_path = "/Users/filip.livancic/.ssh/keys/dbt_next_energy_filip_livancic.pem"
+private_key_file = "/Users/filip.livancic/.ssh/keys/dbt_next_energy_filip_livancic.pem"
 
 [connections.neg-test]
 account = "neg-test"
@@ -43,7 +44,7 @@ user = "filip.livancic@vivanti.com"
 role = "DATA_ENGINEER"
 warehouse = "WH_ENGINEERING"
 authenticator = "SNOWFLAKE_JWT"
-private_key_path = "/Users/filip.livancic/.ssh/keys/dbt_next_energy_filip_livancic.pem"
+private_key_file = "/Users/filip.livancic/.ssh/keys/dbt_next_energy_filip_livancic.pem"
 
 [connections.neg-prod]
 account = "neg-prod"
@@ -51,12 +52,4 @@ user = "filip.livancic@vivanti.com"
 role = "DATA_ENGINEER"
 warehouse = "WH_ENGINEERING"
 authenticator = "SNOWFLAKE_JWT"
-private_key_path = "/Users/filip.livancic/.ssh/keys/dbt_next_energy_filip_livancic.pem"
-
-[connections.neg-dev-sso]
-account = "neg-dev"
-user = "filip.livancic@vivanti.com"
-role = "DATA_ENGINEER"
-warehouse = "WH_ENGINEERING"
-authenticator = "externalbrowser"
-client_store_temporary_credential = true
+private_key_file = "/Users/filip.livancic/.ssh/keys/dbt_next_energy_filip_livancic.pem"

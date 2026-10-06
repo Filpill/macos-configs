@@ -8,7 +8,7 @@ start-at-login = true
 persistent-workspaces = []
 
 after-startup-command = [
-  'exec-and-forget borders active_color=glow(0xff00aaff) inactive_color=0xff494d64 width=7.0'
+  'exec-and-forget /opt/homebrew/bin/borders active_color=glow(0xff00aaff) inactive_color=0xff494d64 width=7.0'
 ]
 
 # i3 doesn't have "normalizations" feature that why we disable them here.

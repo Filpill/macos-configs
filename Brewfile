@@ -1,7 +1,7 @@
 tap "dbt-labs/dbt-cli"
 tap "dimentium/autoraise", trusted: true
 tap "felixkratz/formulae", "https://github.com/FelixKratz/homebrew-formulae"
-tap "hashicorp/tap"
+tap "hashicorp/tap", trusted: true
 tap "nikitabobko/tap", trusted: true
 # Clone of cat(1) with syntax highlighting and Git integration
 brew "bat"
@@ -15,6 +15,8 @@ brew "fzf"
 brew "glow"
 # Terminal file manager
 brew "lf"
+# Postgres C API library
+brew "libpq"
 # Ambitious Vim-fork focused on extensibility and agility
 brew "neovim"
 # Swiss-army knife of markup format conversion
@@ -27,6 +29,8 @@ brew "snowflake-cli"
 brew "uv"
 # A window border system for macOS
 brew "felixkratz/formulae/borders", trusted: true
+# Terraform
+brew "hashicorp/tap/terraform"
 # AeroSpace is an i3-like tiling window manager for macOS
 cask "nikitabobko/tap/aerospace", trusted: true
 cask "font-geist-mono-nerd-font"

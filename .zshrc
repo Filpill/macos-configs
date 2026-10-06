@@ -1,7 +1,7 @@
 # Add SSH-Keys
+ssh-add ~/.ssh/keys/next-energy-ado                    > /dev/null 2>&1
 ssh-add ~/.ssh/keys/filpill-github                     > /dev/null 2>&1
 ssh-add ~/.ssh/keys/vivanti-bit                        > /dev/null 2>&1
-ssh-add ~/.ssh/keys/next-energy-ado                    > /dev/null 2>&1
 ssh-add ~/.ssh/keys/dbt_next_energy_filip_livancic.pem > /dev/null 2>&1
 ssh-add ~/.ssh/keys/vivanti_partner_A9322992770571.p8  > /dev/null 2>&1
 
@@ -95,6 +95,20 @@ sd() {
     fi
     [ -n "$selected_dir" ] && [ -d "$selected_dir" ] && cd "$selected_dir"
 }
+
+# Remember last directory and open new terminals there
+# (only when the shell starts in $HOME, so editors/tools opening a specific dir aren't overridden)
+LAST_DIR_FILE="$HOME/.cache/zsh/last_dir"
+if [[ -z "$CLAUDECODE" ]]; then
+    autoload -Uz add-zsh-hook
+    _save_last_dir() { print -r -- "$PWD" >| "$LAST_DIR_FILE" }
+    add-zsh-hook chpwd _save_last_dir
+    if [[ "$PWD" == "$HOME" && -r "$LAST_DIR_FILE" ]]; then
+        _last_dir="$(<"$LAST_DIR_FILE")"
+        [[ -d "$_last_dir" ]] && cd "$_last_dir"
+        unset _last_dir
+    fi
+fi
 
 # Edit line in vim with ctrl-e:
 autoload edit-command-line; zle -N edit-command-line

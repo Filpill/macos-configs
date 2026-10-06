@@ -3,7 +3,13 @@ set cleaner ~/.config/lf/cleaner.sh
 
 cmd open &{{
     case $(file --mime-type "$f" -b) in
-        text/*) lf -remote "send $id \$nvim \"$f\"" ;;
+        text/*|inode/x-empty|application/json|application/javascript|application/xml|application/x-shellscript|application/x-yaml|application/toml)
+            lf -remote "send $id \$${EDITOR:-nvim} \"$f\"" ;;
         *) open "$f" ;;
     esac
 }}
+
+cmd edit &{{
+    lf -remote "send $id \$${EDITOR:-nvim} \"$f\""
+}}
+map e edit
